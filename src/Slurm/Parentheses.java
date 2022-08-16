@@ -11,11 +11,13 @@ public class Parentheses {
 
         System.out.println(isValidParentheses("()")); //true
         System.out.println(isValidParentheses("((()))")); //true
-        System.out.println(isValidParentheses("()()()")); //true
+        System.out.println(isValidParentheses2("()()()")); //true
 
         System.out.println(isValidParentheses("()(")); //false
         System.out.println(isValidParentheses("((())")); //false
-        System.out.println(isValidParentheses(")(())(")); //false
+        System.out.println(isValidParentheses2(")(())(")); //false
+
+        System.out.println(isValidParentheses2("(("));
     }
 
     static boolean isValidParentheses(String s) {
@@ -36,5 +38,25 @@ public class Parentheses {
         }
         if (stack.size() > 0 ) return false;
         return true;
+    }
+
+    static boolean isValidParentheses2(String s) {
+
+        int counter = 0;
+
+        for (char i: s.toCharArray())
+        {
+            switch (i)
+            {
+                case '(':
+                    counter++;
+                    break;
+                case ')':
+                    if (counter == 0) return false;
+                    counter--;
+                    break;
+            }
+        }
+        return counter == 0;
     }
 }
