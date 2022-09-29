@@ -12,7 +12,8 @@ public class Solution {
         System.out.println(lengthOfLongestSubstring("pwwkew"));
     }
     public static int lengthOfLongestSubstring(String s) {
-        int n = s.length(); int ans = 0;
+        int n = s.length();
+        int ans = 0;
         Map<Character, Integer> map = new HashMap<>();
 
         for (int j=0, i=0; j< n; j++) {
