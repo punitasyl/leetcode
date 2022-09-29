@@ -10,6 +10,7 @@ public class Solution {
     private HashMap<Character, Character> mappings;
 
     public Solution() {
+        this.mappings = new HashMap<>();
         this.mappings.put('}', '{');
         this.mappings.put('[',']');
         this.mappings.put('(',')');
