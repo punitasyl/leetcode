@@ -7,21 +7,26 @@ import java.util.Map;
  * Created by Assylbek on 13.10.2022.
  */
 class Solution {
+    Map<Character,Integer> romanMap;
 
-    public static void main(String[] args) {
-        System.out.println(romanToInt("IXIX"));
+    Solution() {
+        this.romanMap = new HashMap<>();
+        romanMap.put('I',1);
+        romanMap.put('V',5);
+        romanMap.put('X',10);
+        romanMap.put('L',50);
+        romanMap.put('C',100);
+        romanMap.put('D',500);
+        romanMap.put('M',1000);
     }
 
-    public static int romanToInt(String s) {
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        System.out.println(solution.romanToInt("IXIX"));
+        System.out.println(solution.romanToInt2("IX"));
+    }
 
-        Map<Character,Integer> map = new HashMap<>();
-        map.put('I',1);
-        map.put('V',5);
-        map.put('X',10);
-        map.put('L',50);
-        map.put('C',100);
-        map.put('D',500);
-        map.put('M',1000);
+    public int romanToInt(String s) {
 
         char prev = ' ';
 
@@ -35,10 +40,25 @@ class Solution {
             }else if(s.charAt(i)=='C' && prev == 'D' || s.charAt(i)=='C' && prev == 'M'){
                 ans-=100;
             }else{
-                ans += map.get(s.charAt(i));
+                ans += this.romanMap.get(s.charAt(i));
             }
 
             prev = s.charAt(i);
+        }
+
+        return ans;
+    }
+
+    public int romanToInt2(String s) {
+        int ans = 0;
+
+        for (int i = 0; i<s.length(); i++) {
+
+            if (i < s.length() - 1 && this.romanMap.get(s.charAt(i))<this.romanMap.get(s.charAt(i+1))) {
+                ans-= this.romanMap.get(s.charAt(i));
+            } else {
+                ans+= this.romanMap.get(s.charAt(i));
+            }
         }
 
         return ans;
